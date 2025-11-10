@@ -25,3 +25,4 @@ A web application that provides instant AI-powered feedback on designers' portfo
 - Enhanced styling with dark mode toggle
 
 **Author:** Tomiwa Samuel
+**Project Link:** https://tom-samuel.github.io/ai-portfolio-feedback-tool-v2/
