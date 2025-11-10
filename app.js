@@ -5,29 +5,21 @@ const feedbackSection = document.getElementById('feedbackSection');
 const feedbackContent = document.getElementById('feedbackContent');
 const loadingSection = document.getElementById('loadingSection');
 
-// Replace this with your OpenAI API key (never expose publicly in production!)
-const OPENAI_API_KEY = 'YOUR_OPENAI_API_KEY';
-
-// Function to fetch AI feedback
-async function getAIResponse(portfolioURL) {
-  const prompt = `Provide constructive feedback for this portfolio URL: ${portfolioURL}.
-Focus on UI/UX design, usability, aesthetics, and overall impression.`;
-
-  const response = await fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${OPENAI_API_KEY}`
-    },
-    body: JSON.stringify({
-      model: "gpt-4",
-      messages: [{ role: "user", content: prompt }],
-      max_tokens: 500
-    })
+// MOCK function to simulate AI response
+async function getAIResponseMock(portfolioURL) {
+  // Simulate AI processing delay
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(
+        `✅ Feedback for: ${portfolioURL}\n\n` +
+        "- Portfolio layout is clean and professional.\n" +
+        "- Typography hierarchy is clear and readable.\n" +
+        "- Colors are consistent and visually appealing.\n" +
+        "- Navigation is intuitive; consider adding a 'Contact' section.\n" +
+        "- Overall UX is strong and polished."
+      );
+    }, 1500); // 1.5 second delay
   });
-
-  const data = await response.json();
-  return data.choices[0].message.content;
 }
 
 // Button click event
@@ -44,8 +36,9 @@ submitBtn.addEventListener('click', async () => {
   feedbackContent.innerHTML = '';
 
   try {
-    const feedback = await getAIResponse(url);
+    const feedback = await getAIResponseMock(url);
 
+    // Hide loading, show feedback
     loadingSection.style.display = 'none';
     feedbackSection.style.display = 'block';
 
@@ -60,7 +53,7 @@ submitBtn.addEventListener('click', async () => {
 
   } catch (error) {
     loadingSection.style.display = 'none';
-    alert("Error fetching AI feedback. Check your API key and network.");
+    alert("Error generating feedback. Try again.");
     console.error(error);
   }
 });
