@@ -24,4 +24,4 @@ A web application that provides instant AI-powered feedback on designers' portfo
 - Multi-portfolio analysis  
 - Enhanced styling with dark mode toggle
 
-**Author:** [Your Name]
+**Author:** Tomiwa Samuel
